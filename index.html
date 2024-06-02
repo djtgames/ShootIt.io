@@ -1,15 +1,22 @@
-<script type="module">
+// initialize context
+kaboom()
 
-// import kaboom.js
-import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+// define gravity
+setGravity(2400)
 
-// initialize kaboom context
-kaboom();
+// load a sprite called "bean"
+loadSprite("bean", "sprites/bean.png")
 
-// add a piece of text at position (120, 80)
-add([
-    text("Shoot.io"),
-    pos(120, 80),
-]);
+// compose the player game object from multiple components and add it to the game
+const bean = add([
+    sprite("bean"),
+    pos(80, 40),
+    area(),
+    body(),
+])
 
-</script>
+// press space to jump
+onKeyPress("space", () => {
+    // this method is provided by the "body" component above
+    bean.jump()
+})
